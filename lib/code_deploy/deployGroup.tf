@@ -49,7 +49,7 @@ resource "aws_codedeploy_deployment_group" "deployment_group" {
     }
 
     green_fleet_provisioning_option {
-      action = "DISCOVER_EXISTING"
+      action = "COPY_AUTO_SCALING_GROUP"
     }
 
     # 배포에 성공한 다음 원본 환경의 인스턴스를 종료할지 여부와 종료 전 대기 시간을 선택합니다.

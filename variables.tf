@@ -41,6 +41,10 @@ variable "key_name" {
 variable "launch_config_aws_ami" {
   type = string
 }
+variable "deploy_s3_bucket" {
+  type = string
+}
+
 
 # codedeploy
 variable "codedeploy_application_name" {

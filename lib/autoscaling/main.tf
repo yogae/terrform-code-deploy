@@ -35,23 +35,7 @@ resource "aws_iam_role_policy" "instance_instance_policy" {
             "s3:List*"
           ],
           "Resource": [
-            "arn:aws:s3:::replace-with-your-s3-bucket-name/*",
-            "arn:aws:s3:::aws-codedeploy-us-east-2/*",
-            "arn:aws:s3:::aws-codedeploy-us-east-1/*",
-            "arn:aws:s3:::aws-codedeploy-us-west-1/*",
-            "arn:aws:s3:::aws-codedeploy-us-west-2/*",
-            "arn:aws:s3:::aws-codedeploy-ca-central-1/*",
-            "arn:aws:s3:::aws-codedeploy-eu-west-1/*",
-            "arn:aws:s3:::aws-codedeploy-eu-west-2/*",
-            "arn:aws:s3:::aws-codedeploy-eu-west-3/*",
-            "arn:aws:s3:::aws-codedeploy-eu-central-1/*",
-            "arn:aws:s3:::aws-codedeploy-ap-east-1/*",
-            "arn:aws:s3:::aws-codedeploy-ap-northeast-1/*",
-            "arn:aws:s3:::aws-codedeploy-ap-northeast-2/*",
-            "arn:aws:s3:::aws-codedeploy-ap-southeast-1/*",        
-            "arn:aws:s3:::aws-codedeploy-ap-southeast-2/*",
-            "arn:aws:s3:::aws-codedeploy-ap-south-1/*",
-            "arn:aws:s3:::aws-codedeploy-sa-east-1/*"
+            "arn:aws:s3:::${var.deploy_s3_bucket}/*"
           ]
         },
         {
@@ -106,6 +90,11 @@ resource "aws_launch_configuration" "launch_configuration" {
   security_groups      = ["${aws_security_group.instance_sg.id}"]
   user_data = <<EOF
 #!/bin/bash
+sudo yum update -y
+sudo yum install ruby -y
+cd /home/ec2-user
+sudo chmod +x ./install
+sudo ./install auto
 sudo service codedeploy-agent start
 sudo service tomcat start
 EOF

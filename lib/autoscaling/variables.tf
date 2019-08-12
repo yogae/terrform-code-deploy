@@ -52,3 +52,7 @@ variable "alb_target_group_arn" {
 variable "alb_security_group_id" {
   type = string
 }
+
+variable "deploy_s3_bucket" {
+  type = string
+}

@@ -15,6 +15,7 @@ module "autoscaling" {
   vpc_id                = "${var.vpc_id}"
   key_name              = "${var.key_name}"
   aws_ami               = "${var.launch_config_aws_ami}"
+  deploy_s3_bucket      = "${var.deploy_s3_bucket}"
   max_size              = 2
   min_size              = 1
   desired_capacity      = 1

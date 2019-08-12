@@ -1,15 +1,16 @@
 resource "aws_alb_target_group" "default" {
   name                 = "${var.alb_name}-default"
-  port                 = 80
+  port                 = 8080
   protocol             = "HTTP"
   vpc_id               = "${var.vpc_id}"
   # Elastic Load Balancing에서 대상을 등록 취소하기 전에 대기하는 시간
   # deregistration_delay = "${var.deregistration_delay}"
 
-  # health_check {
-  #   path     = "/heatlh"
-  #   protocol = "HTTP"
-  # }
+  health_check {
+    port     = 8080
+    path     = "/health"
+    protocol = "HTTP"
+  }
 }
 
 resource "aws_alb" "alb" {
