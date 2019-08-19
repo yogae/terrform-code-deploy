@@ -118,21 +118,10 @@ resource "aws_autoscaling_group" "asg" {
   force_delete         = true
   launch_configuration = "${aws_launch_configuration.launch_configuration.id}"
   vpc_zone_identifier  = "${var.subnets}"
+  # health_check_type         = "ELB"
   
-  #  load_balancers       = ["${var.load_balancers}"]
+  # A list of elastic load balancer names to add to the autoscaling group names. Only valid for classic load balancers
+  # load_balancers       = ["${var.load_balancers}"]
   # 인스턴스의 Elastic Load Balancing 상태 확인을 사용하여 트래픽이 정상 인스턴스로만 라우트되는지 확인할 수 있습니다
   target_group_arns    = ["${var.alb_target_group_arn}"]
 }
-
-# data "template_file" "user_data" {
-#   template = "${file("${path.module}/templates/user_data.sh")}"
-
-#   vars {
-#     ecs_config        = "${var.ecs_config}"
-#     ecs_logging       = "${var.ecs_logging}"
-#     cluster_name      = "${var.cluster}"
-#     env_name          = "${var.environment}"
-#     custom_userdata   = "${var.custom_userdata}"
-#     cloudwatch_prefix = "${var.cloudwatch_prefix}"
-#   }
-# }

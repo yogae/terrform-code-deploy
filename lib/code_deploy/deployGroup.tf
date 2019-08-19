@@ -55,7 +55,7 @@ resource "aws_codedeploy_deployment_group" "deployment_group" {
     # 배포에 성공한 다음 원본 환경의 인스턴스를 종료할지 여부와 종료 전 대기 시간을 선택합니다.
     terminate_blue_instances_on_deployment_success {
       action                           = "TERMINATE"
-      termination_wait_time_in_minutes = 5
+      termination_wait_time_in_minutes = 1
     }
   }
 

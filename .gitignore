@@ -2,3 +2,4 @@
 *.tfvars
 .terraform/
 task-definitions/
+provider.tf
