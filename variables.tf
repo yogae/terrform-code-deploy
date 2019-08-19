@@ -9,18 +9,22 @@ variable "subnets" {
 # provider
 variable "allowed_account_ids" {
   type = list(string)
+  default = ""
 }
 
 variable "forbidden_account_ids" {
   type = list(string)
+  default = ""
 }
 
 variable "aws_access_key" {
   type = string
+  default = ""
 }
 
 variable "aws_secret_key" {
   type = string
+  default = ""
 }
 
 # alb
