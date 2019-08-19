@@ -3,3 +3,4 @@
 .terraform/
 task-definitions/
 provider.tf
+providerVar.tf
